@@ -1,0 +1,55 @@
+#calculator{
+    width: 500px;
+    display: grid;
+    grid-template-columns: repeat(6,75px);
+    grid-template-rows: 50px 300px;
+    gap: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+}
+
+#display{
+    grid-column: 1/7;
+    text-align: right;
+    margin-top: auto;
+    margin-bottom: auto;
+    border: solid 3px gray;
+    border-radius: 7px;
+    height: max-content;
+    font-size: 45px;
+}
+
+#digits {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    grid-column: 1/4;
+}
+
+#zero {
+    grid-column: 1/3;
+}
+
+.calc-button {
+    
+}
+
+#operators{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    grid-column: 4/7;
+}
+
+#mult{
+    grid-column: 1/2;
+}
+
+#delete{
+    grid-column: 2/4;
+}
+
+#equals{
+    grid-column: 2/4;
+}
