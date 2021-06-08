@@ -29,6 +29,10 @@ function mod(a,b){
     return a%b;
 }
 
+function expo(a,b){
+    return Math.pow(a, b);
+}
+
 //uses the math functions
 function operate(a,b,operator)
 {
@@ -68,8 +72,10 @@ function equalsClick(e)
         result = currentValue; 
     }
     else{
+        //convert input strings to numbers and operate
         result = operate(+storedValue, +currentValue, currentOperator);
         display.textContent = result;
+        //store as string again
         storedValue = String(result);
     }
     operators.forEach(btn => btn.removeAttribute('disabled'));
@@ -108,7 +114,9 @@ function digitClick(e)
     }
     previousValue = currentValue;
     
+    //add digit to end of current value
     const digit = this.getAttribute('data-num');
+    //disable the decimal
     if(digit === ".")
         decimal.setAttribute('disabled', 'true');
     if(currentValue === '0' && digit !== ".")
@@ -128,6 +136,7 @@ function backspace(e)
     else
     {
         let toRemove = currentValue.charAt(currentValue.length-1);
+        //re-enable the decimal
         if(toRemove==='.')
             decimal.removeAttribute('disabled');
         currentValue = currentValue.slice(0, currentValue.length-1);
@@ -161,17 +170,18 @@ const display = document.querySelector('#display-text');
 const operators = document.querySelectorAll('.operator');
 const equalsBtn = document.querySelector('#equals');
 const decimal = document.querySelector('#decimal');
+
+//event listeners for all the buttons
 equalsBtn.addEventListener('click', equalsClick);
 document.querySelector('#add').addEventListener('click', ()=>{setOperator(add,'+')});
 document.querySelector('#subtract').addEventListener('click', ()=>{setOperator(subtract, '-')});
 document.querySelector('#multiply').addEventListener('click', ()=>{setOperator(multiply,'x')});
 document.querySelector('#divide').addEventListener('click', ()=>{setOperator(divide,'/')});
 document.querySelector('#mod').addEventListener('click', ()=>{setOperator(mod,'%')});
+document.querySelector('#exp').addEventListener('click', ()=>{setOperator(expo,'^')});
 document.querySelector('#clear').addEventListener('click', clear);
 document.querySelector('#sqrt').addEventListener('click', rootClick);
 document.querySelector('#delete').addEventListener('click', backspace);
-
-
 
 digits.forEach(digit =>{
     digit.addEventListener('click', digitClick);
